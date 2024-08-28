@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -70,10 +71,10 @@ class AuthController extends Controller
      *      ),
      *  )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param  Request  $request
+     * @return JsonResponse
      */
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -135,10 +136,10 @@ class AuthController extends Controller
      *  )
      * Handle logout and invalidate the token.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param  Request  $request
+     * @return JsonResponse
      */
-    public function logout(Request $request)
+    public function logout(Request $request): JsonResponse
     {
         $user = Auth::user();
         // Revoke the token (for Sanctum, the token is automatically revoked when it's deleted)
@@ -148,10 +149,10 @@ class AuthController extends Controller
     }
     /**
      * Check if the user is authenticated.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function checkAuth(Request $request)
+    public function checkAuth(Request $request): JsonResponse
     {
         // Check if the user is authenticated
         if (Auth::check()) {

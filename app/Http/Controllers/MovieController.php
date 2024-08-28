@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -52,8 +53,9 @@ class MovieController extends Controller
      *           )
      *       )
      *  )
+     *
      */
-    public function index()
+    public function index(): JsonResponse
     {
         try {
             return response()->json([
@@ -138,7 +140,7 @@ class MovieController extends Controller
      *       )
      * )
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         try {
             $request->validate([
@@ -262,7 +264,7 @@ class MovieController extends Controller
      *       )
      *  )
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, Movie $movie): JsonResponse
     {
         try {
             $request->validate([
@@ -303,7 +305,7 @@ class MovieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Movie $movie)
+    public function destroy(Movie $movie): JsonResponse
     {
         try {
             $movie->delete();
